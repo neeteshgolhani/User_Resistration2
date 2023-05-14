@@ -2,14 +2,11 @@ package com.bridgelabz;
 import java.util.Scanner;
 public class MobileNumberValidation {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your mobile number: ");
-        String mobileNumber = scanner.nextLine();
-
-        if (Validator.isValidMobileNumber(mobileNumber)) {
-            System.out.println("Valid mobile number!");
+        String password = "MyPass123";
+        if (PasswordValidator.isPasswordValid(password)) {
+            System.out.println("Password is valid.");
         } else {
-            System.out.println("Invalid mobile number!");
+            System.out.println("Password is not valid. It should have at least 8 characters.");
         }
     }
 }
