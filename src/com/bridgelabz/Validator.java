@@ -1,11 +1,11 @@
 package com.bridgelabz;
 public class Validator {
-     public static boolean isValidEmail(String email) {
-         // Regular expression pattern to match the required conditions
-         String emailPattern = "^[A-Za-z0-9]+([._%+-][A-Za-z0-9]+)*@[A-Za-z0-9]+(\\.[A-Za-z]{2,}){1,2}$";
+    public static boolean isValidMobileNumber(String mobileNumber) {
+        // Regular expression pattern to match the required conditions
+        String mobilePattern = "^\\d{2} \\d{10}$";
 
-         return email.matches(emailPattern); // Check if the email address matches the pattern
-     }
+        return mobileNumber.matches(mobilePattern); // Check if the mobile number matches the pattern
+    }
 }
 
 
