@@ -7,17 +7,17 @@ public class PasswordValidator {
         }
 
         // Check if the password contains at least one uppercase letter
-        // Check if the password contains at least one uppercase letter
         if (!password.matches(".*[A-Z].*")) {
             return false;
         }
 
         // Check if the password contains at least one numeric digit
-        return password.matches(".*\\d.*");
+        if (!password.matches(".*\\d.*")) {
+            return false;
+        }
+
+        // Check if the password has exactly one special character
+        int specialCharCount = password.length() - password.replaceAll("[^!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]", "").length();
+        return specialCharCount == 1;
     }
 }
-
-
-
-
-
