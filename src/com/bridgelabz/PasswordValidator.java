@@ -20,4 +20,5 @@ public class PasswordValidator {
         int specialCharCount = password.length() - password.replaceAll("[^!@#$%^&*(gi)]", "").length();
         return specialCharCount == 1;
     }
+
 }
