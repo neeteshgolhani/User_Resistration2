@@ -17,7 +17,7 @@ public class PasswordValidator {
         }
 
         // Check if the password has exactly one special character
-        int specialCharCount = password.length() - password.replaceAll("[^!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]", "").length();
+        int specialCharCount = password.length() - password.replaceAll("[^!@#$%^&*(gi)]", "").length();
         return specialCharCount == 1;
     }
 }
