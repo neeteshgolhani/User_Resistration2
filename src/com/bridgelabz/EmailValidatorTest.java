@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,10 +16,17 @@ public class EmailValidatorTest {
             "abc.100@abc.com.au",
             "abc@1.com",
             "abc@gmail.com.com",
+            "abc+100@gmail.com"
     })
     public void testValidEmails(String emailAddress) {
-        boolean isValid = EmailValidator.validate(emailAddress);
-        Assertions.assertTrue(isValid);
+        try {
+            EmailValidator.validate(emailAddress);
+            // If no exception is thrown, the email is considered valid
+            Assertions.assertTrue(true);
+        } catch (InvalidUserDetailsException e) {
+            // Exception should not be thrown for valid emails
+            Assertions.fail("Unexpected exception: " + e.getMessage());
+        }
     }
 
     @ParameterizedTest
@@ -35,9 +43,16 @@ public class EmailValidatorTest {
             "abc.@gmail.com",
             "abc@abc@gmail.com",
             "abc@gmail.com.1a",
+            "abc@gmail.com.aa.au"
     })
     public void testInvalidEmails(String emailAddress) {
-        boolean isValid = EmailValidator.validate(emailAddress);
-        Assertions.assertFalse(isValid);
+        try {
+            EmailValidator.validate(emailAddress);
+            // If no exception is thrown, the email is considered invalid
+            Assertions.fail("Expected exception for invalid email: " + emailAddress);
+        } catch (InvalidUserDetailsException e) {
+            // Exception is expected for invalid emails
+            Assertions.assertTrue(true);
+        }
     }
 }

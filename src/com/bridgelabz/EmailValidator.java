@@ -3,11 +3,14 @@ package com.bridgelabz;
 import java.util.regex.Pattern;
 
 public class EmailValidator {
-    private static final String EMAIL_PATTERN =
-            "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    public static void validate(String email) throws InvalidUserDetailsException {
+        if (!isValidEmail(email)) {
+            throw new InvalidUserDetailsException("Invalid email: " + email);
+        }
+    }
 
-    public static boolean validate(String emailAddress) {
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        return pattern.matcher(emailAddress).matches();
+    private static boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return Pattern.matches(emailRegex, email);
     }
 }
